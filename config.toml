@@ -1,3 +1,54 @@
-baseURL = 'http://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = "Musa E. Yagci"
+baseURL = "https://www.meyagci.com/"
+languageCode = "en-us"
+
+theme = "hugo-coder"
+
+## hugo-coder theme params:
+
+[params]
+  author = "Musa E. Yagci"
+  info = "Software Developer in Test"
+  description = "Personal Website of Musa E. Yagci"
+  commit = "https://github.com/memreyagci/personal-website/tree/"
+
+  colorScheme = "dark"
+  hideColorSchemeToggle = true
+
+
+[module]
+[module.hugoVersion]
+min = "0.77.0"
+
+
+[[params.social]]
+  name = "Github"
+  icon = "fa fa-2x fa-github"
+  weight = 1
+  url = "https://github.com/memreyagci/"
+
+[[params.social]]
+  name = "Email"
+  icon = "fa fa-2x fa-at"
+  weight = 1
+  url = "mailto:emre@meyagci.com"
+
+[[params.social]]
+  name = "RSS"
+  icon = "fa fa-2x fa-rss"
+  weight = 6
+  url = "/index.xml"
+  rel = "alternate"
+  type = "application/rss+xml"
+  
+
+[[menu.main]]
+name = "Home"
+weight = 1
+url = "/"
+
+[[menu.main]]
+name = "Blog"
+weight = 2
+url = "posts/"
+
