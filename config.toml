@@ -10,7 +10,6 @@ theme = "hugo-coder"
   author = "Musa E. Yagci"
   info = "Software Developer in Test"
   description = "Personal Website of Musa E. Yagci"
-  commit = "https://github.com/memreyagci/personal-website/tree/"
 
   colorScheme = "dark"
   hideColorSchemeToggle = true
