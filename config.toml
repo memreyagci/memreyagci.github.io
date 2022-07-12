@@ -8,7 +8,7 @@ theme = "hugo-coder"
 
 [params]
   author = "Musa E. Yagci"
-  info = "Software Developer in Test"
+  info = "Software Development Engineer in Test "
   description = "Personal Website of Musa E. Yagci"
 
   colorScheme = "dark"
