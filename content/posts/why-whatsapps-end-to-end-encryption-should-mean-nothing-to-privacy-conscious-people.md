@@ -1,5 +1,5 @@
 ---
-title: "Why Whatsapps End to End Encryption Should Mean Nothing to Privacy Conscious People"
+title: "Why Whatsapp's End to End Encryption Should Mean Nothing to Privacy Conscious People"
 date: 2021-06-26T05:47:41+08:00
 draft: false
 ---
