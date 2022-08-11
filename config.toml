@@ -32,10 +32,16 @@ min = "0.77.0"
   url = "https://github.com/memreyagci/"
 
 [[params.social]]
+  name = "Linkedin"
+  icon = "fa fa-2x fa-linkedin"
+  weight = 1
+  url = "https://linkedin.com/meyagci/"
+
+[[params.social]]
   name = "Email"
   icon = "fa fa-2x fa-at"
   weight = 1
-  url = "mailto:emre@meyagci.com"
+  url = "mailto:musa@meyagci.com"
 
 [[params.social]]
   name = "RSS"
