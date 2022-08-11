@@ -7,9 +7,9 @@ theme = "hugo-coder"
 ## hugo-coder theme params:
 
 [params]
-  author = "Musa E. Yagci"
+  author = "Musa E. Yağcı"
   info = "Software Development Engineer in Test "
-  description = "Personal Website of Musa E. Yagci"
+  description = "Personal Website of Musa E. Yağcı"
 
   colorScheme = "dark"
   hideColorSchemeToggle = true
