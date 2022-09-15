@@ -8,7 +8,7 @@ theme = "hugo-coder"
 
 [params]
   author = "Musa E. Yağcı"
-  info = "Software Development Engineer in Test "
+  info = "Quality Assurance Engineer"
   description = "Personal Website of Musa E. Yağcı"
 
   colorScheme = "dark"
@@ -35,7 +35,7 @@ min = "0.77.0"
   name = "Linkedin"
   icon = "fa fa-2x fa-linkedin"
   weight = 1
-  url = "https://linkedin.com/meyagci/"
+  url = "https://linkedin.com/in/meyagci/"
 
 [[params.social]]
   name = "Email"
