@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Musa&#39;s Blog</title>
-    <link>https://www.meyagci.com/categories/</link>
+    <link>https://memreyagci.github.io/categories/</link>
     <description>Recent content in Categories on Musa&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.meyagci.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://memreyagci.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
