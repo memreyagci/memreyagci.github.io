@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Musa&#39;s Blog</title>
+    <link>https://www.meyagci.com/</link>
+    <description>Recent content on Musa&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Sep 2022 05:56:46 +0800</lastBuildDate><atom:link href="https://www.meyagci.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Manage My Servers With Ansible</title>
+      <link>https://www.meyagci.com/posts/test/</link>
+      <pubDate>Thu, 08 Sep 2022 05:56:46 +0800</pubDate>
+      
+      <guid>https://www.meyagci.com/posts/test/</guid>
+      <description>&lt;h2 id=&#34;table-of-contents&#34;&gt;
+  Table of Contents
+  &lt;a class=&#34;heading-link&#34; href=&#34;#table-of-contents&#34;&gt;
+    &lt;i class=&#34;fa fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;#introduction&#34;&gt;1. Introduction&lt;/a&gt;
+&lt;a href=&#34;#requirements&#34;&gt;2. Requirements&lt;/a&gt;
+&lt;a href=&#34;#how-it-works&#34;&gt;3. How it works&lt;/a&gt;
+&lt;a href=&#34;#roles&#34;&gt;4. Roles&lt;/a&gt;
+&lt;a href=&#34;#docker-volume-backups&#34;&gt;5. Docker volume backups&lt;/a&gt;
+&lt;a href=&#34;#final-notes&#34;&gt;6. Final notes&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;
+  Introduction
+  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;
+    &lt;i class=&#34;fa fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;In this blog post, I will show you how I manage my servers using Ansible.&lt;/p&gt;
+&lt;p&gt;I use two servers, one for production and one for development. I use them to host this personal website, and several servers for password management, note-taking, and so on.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How I Manage My Servers With Ansible</title>
+      <link>https://www.meyagci.com/posts/how-i-manage-my-servers-with-ansible/</link>
+      <pubDate>Wed, 08 Sep 2021 06:12:23 +0800</pubDate>
+      
+      <guid>https://www.meyagci.com/posts/how-i-manage-my-servers-with-ansible/</guid>
+      <description>&lt;h2 id=&#34;table-of-contents&#34;&gt;
+  Table of Contents
+  &lt;a class=&#34;heading-link&#34; href=&#34;#table-of-contents&#34;&gt;
+    &lt;i class=&#34;fa fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;#introduction&#34;&gt;1. Introduction&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;#requirements&#34;&gt;2. Requirements&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;#how-it-works&#34;&gt;3. How it works&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;#how-it-works&#34;&gt;3. How it works&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;#roles&#34;&gt;4. Roles&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;#docker-volume-backups&#34;&gt;5. Docker volume backups&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&#34;#final-notes&#34;&gt;6. Final notes&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;
+  Introduction
+  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;
+    &lt;i class=&#34;fa fa-link&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;In this blog post, I will show you how I manage my servers using Ansible.&lt;/p&gt;
+&lt;p&gt;I use two servers, one for production and one for development. I use them to host this personal website, and several servers for password management, note-taking, and so on.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>How I Manage &amp; Setup My Workstation (dotfiles, cronjobs, package installations, and so on)</title>
+      <link>https://www.meyagci.com/posts/how-i-manage-and-setup-my-workstation-dotfiles-cronjobs-package-installations/</link>
+      <pubDate>Tue, 17 Aug 2021 05:34:52 +0800</pubDate>
+      
+      <guid>https://www.meyagci.com/posts/how-i-manage-and-setup-my-workstation-dotfiles-cronjobs-package-installations/</guid>
+      <description>&lt;p&gt;I have been an Arch user for about a year, and since I haven&amp;rsquo;t looked back. Though as for all operating systems, rebuilding your system can be a lot of hassle. Especially if you are using a minimalist distribution like Arch, whose users tend to make much more configuration than an average Linux user.&lt;/p&gt;
+&lt;p&gt;After getting frustrated enough by not taking a backup and building an automation, I finally got to the work of doing so.
+In this post, I will introduce you to my automation script, which is not rocket science, though it might give you an insight if you ever decide to build your own.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Why Whatsapp&#39;s End to End Encryption Should Mean Nothing to Privacy Conscious People</title>
+      <link>https://www.meyagci.com/posts/why-whatsapps-end-to-end-encryption-should-mean-nothing-to-privacy-conscious-people/</link>
+      <pubDate>Sat, 26 Jun 2021 05:47:41 +0800</pubDate>
+      
+      <guid>https://www.meyagci.com/posts/why-whatsapps-end-to-end-encryption-should-mean-nothing-to-privacy-conscious-people/</guid>
+      <description>&lt;p&gt;Everyone who advocates free &amp;amp; open-source software must have heard &amp;ldquo;..but WhatsApp is end-to-end encrypted, which means no one, not even Facebook can read them&amp;rdquo; as a response at least once. While it is true that end-to-end encrypted data can only be decrypted by the two parties holding the keys (assuming there are no flaws in its implementation), I would like to indicate my reasons on why and how your privacy might still be compromised.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

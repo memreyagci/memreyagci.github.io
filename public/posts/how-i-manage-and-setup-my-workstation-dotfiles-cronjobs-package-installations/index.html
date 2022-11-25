@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Musa E. Yağcı">
+<meta name="description" content="I have been an Arch user for about a year, and since I haven&rsquo;t looked back. Though as for all operating systems, rebuilding your system can be a lot of hassle. Especially if you are using a minimalist distribution like Arch, whose users tend to make much more configuration than an average Linux user.
+After getting frustrated enough by not taking a backup and building an automation, I finally got to the work of doing so.
+In this post, I will introduce you to my automation script, which is not rocket science, though it might give you an insight if you ever decide to build your own.">
+<meta name="keywords" content="">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How I Manage &amp; Setup My Workstation (dotfiles, cronjobs, package installations, and so on)"/>
+<meta name="twitter:description" content="I have been an Arch user for about a year, and since I haven&rsquo;t looked back. Though as for all operating systems, rebuilding your system can be a lot of hassle. Especially if you are using a minimalist distribution like Arch, whose users tend to make much more configuration than an average Linux user.
+After getting frustrated enough by not taking a backup and building an automation, I finally got to the work of doing so.
+In this post, I will introduce you to my automation script, which is not rocket science, though it might give you an insight if you ever decide to build your own."/>
+
+<meta property="og:title" content="How I Manage &amp; Setup My Workstation (dotfiles, cronjobs, package installations, and so on)" />
+<meta property="og:description" content="I have been an Arch user for about a year, and since I haven&rsquo;t looked back. Though as for all operating systems, rebuilding your system can be a lot of hassle. Especially if you are using a minimalist distribution like Arch, whose users tend to make much more configuration than an average Linux user.
+After getting frustrated enough by not taking a backup and building an automation, I finally got to the work of doing so.
+In this post, I will introduce you to my automation script, which is not rocket science, though it might give you an insight if you ever decide to build your own." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.meyagci.com/posts/how-i-manage-and-setup-my-workstation-dotfiles-cronjobs-package-installations/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-17T05:34:52+08:00" />
+<meta property="article:modified_time" content="2021-08-17T05:34:52+08:00" />
+
+
+
+
+  <title>Musa&#39;s Blog</title>
+
+  
+  <link rel="canonical" href="https://www.meyagci.com/posts/how-i-manage-and-setup-my-workstation-dotfiles-cronjobs-package-installations/">
+  
+
+  <link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.6b1a4fbc48955b72aea7913e43fabeb45e8bc120da5aa41b598dd33adcac4b59.css" integrity="sha256-axpPvEiVW3Kup5E&#43;Q/q&#43;tF6LwSDaWqQbWY3TOtysS1k=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.39e41a7f16bdf8cb16e43cae7d714fa1016f1d2d2898a5b3f27f42c9979204e2.css" integrity="sha256-OeQafxa9&#43;MsW5DyufXFPoQFvHS0omKWz8n9CyZeSBOI=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+   
+
+
+
+
+  <link rel="icon" type="image/png" href="/favicon32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+  
+
+  <meta name="generator" content="Hugo 0.106.0">
+
+
+  
+
+
+  <script async defer data-website-id="7ab94154-ddd0-4498-bdce-155c23ed3231" src="https://analytics.meyagci.com/umami.js"></script>
+</head>
+
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Musa&#39;s Blog
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/">Home</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/posts/">Blog</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="https://www.meyagci.com/posts/how-i-manage-and-setup-my-workstation-dotfiles-cronjobs-package-installations/">
+              How I Manage &amp; Setup My Workstation (dotfiles, cronjobs, package installations, and so on)
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="2021-08-17T05:34:52&#43;08:00">
+                August 17, 2021
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              5-minute read
+            </span>
+          </div>
+          
+          
+          
+        </div>
+      </header>
+
+      <div>
+        
+        <p>I have been an Arch user for about a year, and since I haven&rsquo;t looked back. Though as for all operating systems, rebuilding your system can be a lot of hassle. Especially if you are using a minimalist distribution like Arch, whose users tend to make much more configuration than an average Linux user.</p>
+<p>After getting frustrated enough by not taking a backup and building an automation, I finally got to the work of doing so.
+In this post, I will introduce you to my automation script, which is not rocket science, though it might give you an insight if you ever decide to build your own.</p>
+<p>I won&rsquo;t go into much details on the usage of the programs I will mention, such as GNU Stow. The reason is, my aim being, like I mentioned above, to give you an idea on how I handle things, and I believe contents that prepared solely to introduce those programs would be more beneficial.</p>
+<hr>
+<h2 id="1--dotfiles-management-gnu-stow">
+  1-) Dotfiles management: GNU Stow
+  <a class="heading-link" href="#1--dotfiles-management-gnu-stow">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>(GNU Stow)[https://www.gnu.org/software/stow/] is a symlinks factory which we can have individual directories for each program in a directory we track via a version control system, and create symbolic links to their places with one simple command.</p>
+<p><img src="/dotfiles_ls.png" alt="The directory for my dotfiles in the home directory"></p>
+<p>Let&rsquo;s look into bash directory:</p>
+<p><img src="/dotfiles_bash_tree.png" alt="bash directory in ~/.dotfiles/"></p>
+<blockquote>
+<p>Info: tree is a one nice command that you can list contents of directories in a tree-like format.</p>
+</blockquote>
+<p>We have .bash_profile file, and a bash directory in .config directory. Looks the way how they would be placed in home directory, right? That&rsquo;s the working methodology of GNU Stow. When in your dotfiles directory, you run the following command for the program whose files you want to be symlinked to:</p>
+<p><code>stow bash</code></p>
+<p>What the command above does is symlinking directories and files of the selected program accordingly to its hierarchical structure, taking starting point as the parent folder of the .dotfiles directory, which in this case is the home directory. And the final result is:</p>
+<p><img src="/dotfiles_ls.png" alt=""></p>
+<p><img src="/dotfiles_bashprofile_link.png" alt=""></p>
+<p>Of course, by using options, dotfiles directory and target directory can be specified so that you won&rsquo;t have to cd into it:</p>
+<p><code>stow --dir=$HOME/.dotfiles/ --target=$HOME/ bash</code></p>
+<p>That&rsquo;s pretty much all I want to mention about GNU Stow in this post. In the past, I used Git Bare Repository method, but I like the structure and usage of Stow more. Also, its unstowing option is really good when/if you don&rsquo;t want to use a program anymore but still want to keep its configuration files, or testing out different configurations and want to easily switch between them.</p>
+<h2 id="2--before-abandoning-the-ship-running-the-checkout-script">
+  2-) Before abandoning the ship: Running the checkout script
+  <a class="heading-link" href="#2--before-abandoning-the-ship-running-the-checkout-script">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>One other problem I used to face was the realization that I forgot to backup something. So I have written a basic shell script for it: checkout. What it does is basically checking a few repositories I specified for any changes that are not committed &amp; pushed. It also reminds me a few tasks I need to do manually:</p>
+<p><img src="/checkout_script.png" alt=""></p>
+<p><a href="https://github.com/memreyagci/dotfiles/blob/master/personal_scripts/.local/bin/scripts/checkout">Click here</a> to check out the script.</p>
+<h2 id="3--finally-the-script-for-automated-setup">
+  3-) Finally, the script for automated setup
+  <a class="heading-link" href="#3--finally-the-script-for-automated-setup">
+    <i class="fa fa-link" aria-hidden="true"></i>
+  </a>
+</h2>
+<p>You partitioned your disks, setup the encryption and all the other things. You booted up the computer, and here comes the boring part: Pulling your dotfiles, placing them to their correct places, then installing the programs you need only to find out later that you forgot to some necessary stuff in a moment that the time is running out for you. Tap-to-click for touchpad doesn&rsquo;t work? Gotta hit to stackoverflow to solve the issue again.</p>
+<p>..unless you note down all the necessary stuff for your system and build an automation script.</p>
+<p>What the script basically does is:</p>
+<ul>
+<li>Creating a user which can have root privileges with password.</li>
+<li>Enabling <a href="https://aur.chaotic.cx/">Chaotic AUR</a> repository.</li>
+<li>Refreshing package database and installing necessary programs. I store the package names in a csv file that indicates name, installation method, purpose of the program.</li>
+<li>Installing my dotfiles.</li>
+<li>Enabling background services with systemctl.</li>
+</ul>
+<hr>
+<blockquote>
+<p>Tip: When one wants to start a newly-installed background service, most users tend to do the following:</p>
+</blockquote>
+<pre tabindex="0"><code>systemctl enable SERVICE_NAME
+systemctl start SERVICE_NAME
+</code></pre><blockquote>
+<p>The start command is to start the service without needing to reboot. Did you know that you could do the same thing providing the enable command with &ndash;now flag?:</p>
+</blockquote>
+<pre tabindex="0"><code>systemctl enable --now SERVICE_NAME
+</code></pre><blockquote>
+<p>In one command, you enabled &amp; also started the service.</p>
+</blockquote>
+<hr>
+<ul>
+<li>Setting cronjobs.</li>
+<li>Installing my build of suckless utilities (window manager, statusbar, terminal emulator, lockscreen, menu application)</li>
+<li>Some other small tasks like enabling tap-to-click, setting default user shell to ZSH, and so on.</li>
+</ul>
+<hr>
+<p>To run the script:</p>
+<pre tabindex="0"><code>$ git clone https://github.com/memreyagci/workstation-installation-script /tmp/workstation-installation-script
+
+$ cd /tmp/workstation-installation-script
+
+$ ./installation-script.sh
+</code></pre><p>And finally reboot your computer after the installation has finished.</p>
+<p>To be honest, I wrote the code quite clumsily. Except the installations from AUR repository via yay (which is only 2 programs during the preparation of this post), everything works, though I already have a set of goals for improvements.</p>
+<hr>
+<p>Goals:</p>
+<ul>
+<li>Fixing installation of AUR packages.</li>
+<li>Better error handling.</li>
+<li>Creating a log file.</li>
+<li>More aesthetically written user messages.</li>
+<li>Handling backups automatically. What I have in mind is improving the checkout script in a way that it will be able to take a backup of the directories I specified and move them to an external drive. I might even use encryption while doing so by using veracrypt.</li>
+<li>More and more automation.</li>
+</ul>
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2022
+     Musa E. Yağcı 
+    ·
+    
+    Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+  
+  <script src="/js/coder.min.236049395dc3682fb2719640872958e12f1f24067bb09c327b233e6290c7edac.js" integrity="sha256-I2BJOV3DaC&#43;ycZZAhylY4S8fJAZ7sJwyeyM&#43;YpDH7aw="></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
