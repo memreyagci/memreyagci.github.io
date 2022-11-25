@@ -7,9 +7,9 @@ theme = "hugo-coder"
 ## hugo-coder theme params:
 
 [params]
-  author = "Musa E. Yağcı"
+  author = "Musa Yagci"
   info = "Quality Assurance Engineer"
-  description = "Personal Website of Musa E. Yağcı"
+  description = "Personal website of Musa Yagci"
 
   colorScheme = "dark"
   hideColorSchemeToggle = true
@@ -35,13 +35,13 @@ min = "0.77.0"
   name = "Linkedin"
   icon = "fa fa-2x fa-linkedin"
   weight = 1
-  url = "https://linkedin.com/in/meyagci/"
+  url = "https://linkedin.com/in/musayagci/"
 
 [[params.social]]
   name = "Email"
   icon = "fa fa-2x fa-at"
   weight = 1
-  url = "mailto:musa@meyagci.com"
+  url = "mailto:musayagci.qa@gmail.com"
 
 [[params.social]]
   name = "RSS"
