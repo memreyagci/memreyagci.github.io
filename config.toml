@@ -1,5 +1,5 @@
 title = "Musa's Blog"
-baseURL = "https://www.meyagci.com/"
+baseURL = "https://memreyagci.github.io"
 languageCode = "en-us"
 
 theme = "hugo-coder"
