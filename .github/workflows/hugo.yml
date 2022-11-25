@@ -5,6 +5,14 @@ on:
     branches:
       - main  # Set a branch that will trigger a deployment
   pull_request:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'hugo manual'  
 
 jobs:
   deploy:
