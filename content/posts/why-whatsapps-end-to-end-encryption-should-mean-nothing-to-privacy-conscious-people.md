@@ -1,7 +1,7 @@
 ---
 title: "Why Whatsapp's End to End Encryption Should Mean Nothing to Privacy Conscious People"
 date: 2021-06-26T05:47:41+08:00
-draft: false
+draft: true
 ---
 
 Everyone who advocates free & open-source software must have heard "..but WhatsApp is end-to-end encrypted, which means no one, not even Facebook can read them" as a response at least once. While it is true that end-to-end encrypted data can only be decrypted by the two parties holding the keys (assuming there are no flaws in its implementation), I would like to indicate my reasons on why and how your privacy might still be compromised.
