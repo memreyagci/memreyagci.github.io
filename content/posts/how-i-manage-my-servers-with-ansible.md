@@ -7,17 +7,10 @@ draft: false
 
 ## Table of Contents
 [1. Introduction](#introduction)
-\
 [2. Requirements](#requirements)
-\
 [3. How it works](#how-it-works)
-\
-[3. How it works](#how-it-works)
-\
 [4. Roles](#roles)
-\
 [5. Docker volume backups](#docker-volume-backups)
-\
 [6. Final notes](#final-notes)
 
 ## Introduction
