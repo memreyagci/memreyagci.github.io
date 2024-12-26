@@ -1,0 +1,131 @@
+<!doctype html><html lang=en><head><title>How I Manage My Servers With Ansible · Emre's Blog
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Emre Yagci"><meta name=description content="
+  Table of Contents
+  
+    
+    Link to heading
+  
+
+1. Introduction
+2. Requirements
+3. How it works
+4. Roles
+5. Docker volume backups
+6. Final notes
+
+  Introduction
+  
+    
+    Link to heading
+  
+
+In this blog post, I will show you how I manage my servers using Ansible.
+I use two servers, one for production and one for development. I use them to host this personal website, and several servers for password management, note-taking, and so on."><meta name=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="How I Manage My Servers With Ansible"><meta name=twitter:description content=" Table of Contents Link to heading 1. Introduction 2. Requirements 3. How it works 4. Roles 5. Docker volume backups 6. Final notes
+Introduction Link to heading In this blog post, I will show you how I manage my servers using Ansible.
+I use two servers, one for production and one for development. I use them to host this personal website, and several servers for password management, note-taking, and so on."><meta property="og:url" content="https://www.meyagci.com/posts/how-i-manage-my-servers-with-ansible/"><meta property="og:site_name" content="Emre's Blog"><meta property="og:title" content="How I Manage My Servers With Ansible"><meta property="og:description" content=" Table of Contents Link to heading 1. Introduction 2. Requirements 3. How it works 4. Roles 5. Docker volume backups 6. Final notes
+Introduction Link to heading In this blog post, I will show you how I manage my servers using Ansible.
+I use two servers, one for production and one for development. I use them to host this personal website, and several servers for password management, note-taking, and so on."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-09-08T06:12:23+08:00"><meta property="article:modified_time" content="2021-09-08T06:12:23+08:00"><link rel=canonical href=https://www.meyagci.com/posts/how-i-manage-my-servers-with-ansible/><link rel=preload href=/fonts/fa-brands-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-regular-400.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/fa-solid-900.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/coder.min.ed30115a76cdaa62f2229e973d5b1c89b2d3dd4b1d9c07a729baad06aa3b0cbe.css integrity="sha256-7TARWnbNqmLyIp6XPVscibLT3UsdnAenKbqtBqo7DL4=" crossorigin=anonymous media=screen><link rel=stylesheet href=/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin=anonymous media=screen><link rel=icon type=image/svg+xml href=/images/favicon.svg sizes=any><link rel=icon type=image/png href=/icon.png sizes=32x32><link rel=icon type=image/png href=/icon.png sizes=16x16><link rel=apple-touch-icon href=/images/apple-touch-icon.png><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/images/safari-pinned-tab.svg color=#5bbad5></head><body class="preload-transitions colorscheme-auto"><main class=wrapper><nav class=navigation><section class=container><a class=navigation-title href=https://www.meyagci.com/>Emre's Blog
+</a><input type=checkbox id=menu-toggle>
+<label class="menu-button float-right" for=menu-toggle><i class="fa-solid fa-bars fa-fw" aria-hidden=true></i></label><ul class=navigation-list><li class=navigation-item><a class=navigation-link href=/>Home</a></li><li class=navigation-item><a class=navigation-link href=/posts/>Blog</a></li></ul></section></nav><div class=content><section class="container post"><article><header><div class=post-title><h1 class=title><a class=title-link href=https://www.meyagci.com/posts/how-i-manage-my-servers-with-ansible/>How I Manage My Servers With Ansible</a></h1></div><div class=post-meta><div class=date><span class=posted-on><i class="fa-solid fa-calendar" aria-hidden=true></i>
+<time datetime=2021-09-08T06:12:23+08:00>September 8, 2021
+</time></span><span class=reading-time><i class="fa-solid fa-clock" aria-hidden=true></i>
+5-minute read</span></div></div></header><div class=post-content><h2 id=table-of-contents>Table of Contents
+<a class=heading-link href=#table-of-contents><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p><a href=#introduction>1. Introduction</a>
+<a href=#requirements>2. Requirements</a>
+<a href=#how-it-works>3. How it works</a>
+<a href=#roles>4. Roles</a>
+<a href=#docker-volume-backups>5. Docker volume backups</a>
+<a href=#final-notes>6. Final notes</a></p><h2 id=introduction>Introduction
+<a class=heading-link href=#introduction><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>In this blog post, I will show you how I manage my servers using Ansible.</p><p>I use two servers, one for production and one for development. I use them to host this personal website, and several servers for password management, note-taking, and so on.</p><p>I already had docker-compose files for my containers, which may had done most of the job, and I have an automated installation script for my workstation, whose repository can be found <a href=https://github.com/memreyagci/workstation-installation-script class=external-link target=_blank rel=noopener>here</a> and my blog post about it is <a href=https://www.meyagci.com/how-i-manage-setup-my-workstation-shell-scripts-gnu-stow/ class=external-link target=_blank rel=noopener>here</a>.</p><p>However I wanted to take a more modern and universal approach for my servers. When writing a shell script, you need to take a lot of exceptions and different scenarios into consideration, write the appropriate output messages, and whatnot. On the other hand, Ansible handles them all in an elegant way. Moreover, if I decide to use more than one servers, managing them will be much more easier, especially when I start to use different operating systems.</p><h2 id=requirements>Requirements
+<a class=heading-link href=#requirements><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><ul><li><strong>Ubuntu 20.4 LTS</strong> is what I chose as my server distro</li><li><strong>Ansible</strong>, for the host machine</li><li><strong><a href=https://github.com/caian-org/ansible-stow class=external-link target=_blank rel=noopener>ansible-stow</a> module</strong>, for deploying dotfiles</li><li><strong><a href=https://github.com/ansible-collections/ansible.posix class=external-link target=_blank rel=noopener>ansible.posix</a> module</strong>, for mounting block-storage devices, to use for Docker volume backups</li></ul><h2 id=how-it-works>How it works
+<a class=heading-link href=#how-it-works><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p><strong>For the servers</strong>, I use the following startup script for installation, which creates a user called ansible that belongs to sudo group, and adds my ssh key:</p><pre tabindex=0><code>#!/bin/sh
+
+useradd -mG sudo -s /bin/bash -p $(echo $mypasswd | openssl passwd -1 -stdin) ansible
+
+su -c &#34;mkdir /home/ansible/.ssh&#34; ansible
+
+su -c &#34;echo &#34;$host_ssh&#34; &gt; /home/ansible/.ssh/authorized_keys&#34; ansible
+</code></pre><hr><p>For the host machine, first, you need to clone the repository:</p><pre tabindex=0><code>$ git clone --recurse-submodules https://github.com/memreyagci/server-configs
+</code></pre><blockquote><p>Note: <em>"&ndash;recurse-submodules" is to clone turtl server into roles/containers/files, since it is a submodule of my server-configs repository.</em></p></blockquote><p>Thereafter, cd into server-configs and run the following command:</p><pre tabindex=0><code>$ ansible-playbook $playbook --ask-become-pass --ask-vault-pass
+</code></pre><blockquote><p>There are two playbooks: dev_servers.yml & prod_servers.yml</p></blockquote><p>Here is a fast-forwarded screen capture:</p><h2 id=roles>Roles
+<a class=heading-link href=#roles><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>The configuration consists of the following files:</p><pre tabindex=0><code>server-configs
+├── dev_servers.yml
+├── group_vars
+│   ├── all.yml
+│   ├── dev_servers.yml
+│   ├── example_all.yml
+│   ├── example_servers.yml
+│   └── prod_servers.yml
+├── prod_servers.yml
+├── README.md
+└── roles
+    ├── containers
+    │   ├── files
+    │   └── tasks
+    │       ├── baikal.yml
+    │       ├── ghost.yml
+    │       ├── main.yml
+    │       ├── traefik.yml
+    │       ├── turtl.yml
+    │       └── vaultwarden.yml
+    ├── cronjobs
+    │   ├── files
+    │   │   └── backup-docker-volumes.sh
+    │   └── tasks
+    │       └── main.yml
+    ├── dotfiles
+    │   └── tasks
+    │       └── main.yml
+    ├── mount
+    │   └── tasks
+    │       └── main.yml
+    ├── packages
+    │   └── tasks
+    │       ├── docker.yml
+    │       ├── general.yml
+    │       └── main.yml
+    └── users
+        └── tasks
+            └── main.yml
+</code></pre><ul><li><strong>dev_server.yml & prod_server.yml</strong> include the roles to run, as their names indicate they are run in different servers defined in /etc/ansible/hosts</li><li><strong>group_vars</strong>:<ul><li><strong>all.yml</strong> includes username and password of the account which will be used as the main user of the server (for ssh connections, container managemenet, etc.)</li><li><strong>dev_servers.yml & prod_servers.yml</strong> consists of domains we want to use for the servers, also database passwords and admin tokens of some of the containers.</li></ul></li><li><strong>roles</strong>:<ul><li><strong>containers</strong>: As the name suggests this role deploys the following Docker containers.<ul><li><strong>Traefik</strong>: A reverse proxy that deals with routing connections to other containers.</li><li><strong>Baikal</strong>: CardDAV & CalDAV server</li><li><strong>Ghost</strong>: A blogging platform</li><li><strong>Turtl</strong>: Note-taking server</li><li><strong>Vaultwarden</strong>: Password management server</li></ul></li><li><strong>cronjobs</strong>: It adds a script I wrote called backup-docker-volumes to cron.</li><li><strong>dotfiles</strong>: Deploys my dotfiles using GNU Stow</li><li><strong>mount</strong>: Adds the block-storage device to the fstab and mounts it.</li><li><strong>packages</strong>: Installs necessary packages for the server. Some of them are: rsync, Docker, neovim, stow, python3-pip..</li><li><strong>users</strong>: Creates a user of sudo and docker groups for main usage.</li></ul></li></ul><h2 id=docker-volume-backups>Docker volume backups
+<a class=heading-link href=#docker-volume-backups><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Let&rsquo;s take a look at the script I wrote for Docker volume backups:</p><pre tabindex=0><code>#!/bin/sh
+
+CONTAINERS=(
+    baikal
+    ghost
+    traefik
+    turtl-db
+    turtl-server
+    vaultwarden
+)
+
+VOLUMES=(
+    baikal_config
+    baikal_data
+    ghost
+    letsencrypt
+    traefik
+    turtl
+    vaultwarden
+    )
+
+docker stop ${CONTAINERS[@]}
+
+rsync -vargo ${VOLUMES[@]} /mnt/blockstorage/docker-volume-backups
+cd docker-volume-backups
+tar cvf docker_volumes_backups_$(date &#39;+%d-%m-%Y&#39;).tar *
+
+docker start ${CONTAINERS[@]}
+</code></pre><p>It&rsquo;s a basic script that I come up with in a short time. It stops all the containers, syncs the volumes into a folder in blockstorage, archives them, and finally starts the containers again.</p><p>It is crucial to use -g and -o flags for rsync, which preserves group and user ownerships. Otherwise, you may have lots of issues about permissions when you try to recover them.</p><h2 id=final-notes>Final Notes
+<a class=heading-link href=#final-notes><i class="fa-solid fa-link" aria-hidden=true title="Link to heading"></i>
+<span class=sr-only>Link to heading</span></a></h2><p>Ansible is really a great software. I will probably be using it for my workstations too. As a matter of fact, the previous post was meant to be &ldquo;How I manage my workstations with Ansible&rdquo;, however some errors related to pacman occured during tests, probably nothing unsolvable, but I felt like writing a shell script at the moment and went with it. Though I will definetly give it another try.</p><p>Having a central system you can use to manage your machines, without having to think of every little scenario for every piece of software you use, and being able to do those in a distro-agnostic way is awesome.</p></div><footer></footer></article></section></div><footer class=footer><section class=container>©
+2024
+Emre Yagci
+·
+Powered by <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> & <a href=https://github.com/luizdepra/hugo-coder/ target=_blank rel=noopener>Coder</a>.</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script></body></html>
