@@ -12,7 +12,7 @@ theme = "hugo-coder"
   description = "Personal website of Emre Yagci"
 
   colorScheme = "auto"
-  hideColorSchemeToggle = true
+  hideColorSchemeToggle = false
 
   favicon_16 = "icon.png"
   favicon_32 = "icon.png"
@@ -41,7 +41,7 @@ min = "0.77.0"
   name = "Email"
   icon = "fa fa-2x fa-at"
   weight = 1
-  url = "mailto:contact@meyagci.com"
+  url = "mailto:contact@meyagci.com"  
 
 [[params.social]]
   name = "RSS"
