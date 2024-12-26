@@ -14,8 +14,11 @@ theme = "hugo-coder"
   colorScheme = "dark"
   hideColorSchemeToggle = true
 
-  favicon_16 = "favicon16.png"
-  favicon_32 = "favicon32.png"
+  ## favicon_16 = "favicon16.png"
+  ## favicon_32 = "favicon32.png"
+
+  favicon_16 = "icon.png"
+  favicon_32 = "icon.png"
 
   avatarURL = "icon.png"
 
